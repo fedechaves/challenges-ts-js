@@ -2,11 +2,10 @@
 import './App.css'
 
 function App() {
-
-
   return (
+    <>
+    <h1>Follow them:</h1>
     <article>
-      <h1>Follow them:</h1>
       <header>
         <img src="https://pbs.twimg.com/profile_images/1706686915167064064/Fh5d_3Mk_400x400.jpg" alt="Profile Img" />
         <div>
@@ -14,7 +13,11 @@ function App() {
           <span>username</span>
         </div>
       </header>
+      <aside>  
+        <button>Seguir</button>
+      </aside>
     </article>
+  </>
   )
 }
 
