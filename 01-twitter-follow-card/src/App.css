@@ -23,16 +23,53 @@ img {
     border-radius: 50%;
 }
 
-button {
-    min-width: 5rem;
-    min-height: 2rem;
-    border-radius: 15px;
+.follow {
     cursor: pointer;
+    margin-left: 16px;
+    border: 0;
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-weight: bold;
+    border: 1px solid #000;
+    transition: .3s ease background-color;
 }
 
-button:hover {
-    background-color: #ffffff74;
-    color: white;
-    transition: ease-in-out 0.2s;
+.follow:hover {
+    opacity: .8;
 }
+
+.following-text {
+    display: block;
+}
+
+.follow.isFollowing {
+    border: 1px solid #bbb;
+    background: transparent;
+    color: #fff;
+    width: 140px;
+}
+
+.follow.isFollowing:hover {
+    background-color: rgba(255, 0, 0, 0.178);
+    color: red;
+    border: 1px solid red;
+    transition: .3s ease all;
+    opacity: 1;
+}
+
+.stop-following-text{
+    display:none;
+}
+
+.follow.isFollowing:hover .following-text{
+    display: none;
+}
+
+.follow.isFollowing:hover .stop-following-text{
+    display: block;
+}
+
+
+
+
 

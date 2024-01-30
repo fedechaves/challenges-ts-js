@@ -1,23 +1,23 @@
-
 import './App.css'
+import TwitterCard from './components/TwitterCard'
 
 function App() {
   return (
     <>
-    <h1>Follow them:</h1>
-    <article>
-      <header>
-        <img src="https://pbs.twimg.com/profile_images/1706686915167064064/Fh5d_3Mk_400x400.jpg" alt="Profile Img" />
-        <div>
-          <strong>Nombre del usuario</strong>
-          <span>username</span>
-        </div>
-      </header>
-      <aside>  
-        <button>Seguir</button>
-      </aside>
-    </article>
-  </>
+      <h1>Follow them:</h1>
+      <TwitterCard 
+        name='Fede Chaves'
+        username="fedecha"
+        isFollowing
+      >
+      </TwitterCard>
+      <TwitterCard
+        name='Alber Flecha'
+        username="alberf"
+        isFollowing={false}
+      >
+      </TwitterCard>
+    </>
   )
 }
 
