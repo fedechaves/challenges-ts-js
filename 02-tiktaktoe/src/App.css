@@ -11,3 +11,6 @@
   grid-template-rows: 1fr 1fr 1fr;
 }
 
+.is-selected {
+  background-color: red;
+}
