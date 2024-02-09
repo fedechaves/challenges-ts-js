@@ -1,39 +1,38 @@
 import './App.css'
-import  movies from "./api/movies.json"
-import noResults  from "./api/noResults.json"
+import { Movies } from './components/Movies'
+import { useMovies } from './hooks/useMovies'
+import { useSearch } from './hooks/useSearch'
+
 
 function App() {
-  const movieList = movies.Search
-  const hasMovies = movieList?.length > 0
+  const { search, setSearch, error } = useSearch()
+  const { movies, getMovies, loading } = useMovies({ search })  
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    getMovies(search)
+  }
+
+  const handleChange = (event) => {
+    const newSearch = event.target.value
+    setSearch(newSearch)
+  }
 
   return (
     <>
       <h1 style={{ alignSelf: "center"}}>Movie Finder</h1>
-      <section >
-        <form action="submit" className='form'>
-          <label htmlFor="Movie" name="Movie">Movie:</label>
-          <input type="text" name="movie" placeholder='Matrix, avengers...'/>
-          <button>Search</button>
+      <header >
+        <form className='form' onSubmit={handleSubmit}>
+          <label name="movie">Movie:</label>
+          <input onChange={handleChange} value={search} name="movie" placeholder='Matrix, avengers...'/>          
+          <button type='submit'>Search</button>
         </form>
-      </section>
+        {error && <p style={{ color: 'red'}}>{error}</p> }
+      </header>
 
-      <main>
-        {
-          hasMovies 
-          ? (
-            <ul>
-             { 
-                movieList.map( movie => (
-                <li key={movie.imdbID}>
-                  <h3>{movie.Title}</h3>
-                  <span>{movie.Year}</span>
-                  <img src={movie.Poster} alt="Movie portrait" />
-                </li>
-                ))
-              }
-              </ul> ) : ( <h1>404 not found</h1>
-            )
-        }
+      <main> 
+        { loading ? <p>loading...</p> : 
+        <Movies movies={movies} />}
       </main>
     </>
   )

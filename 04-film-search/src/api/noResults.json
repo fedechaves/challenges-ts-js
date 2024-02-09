@@ -1,3 +1,4 @@
 {
-    "404": "we haven't found movies"
-}
+    "Response": "False",
+    "Error": "Movie not found!"
+    }
