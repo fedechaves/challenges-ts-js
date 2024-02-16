@@ -15,6 +15,10 @@ function App() {
     const newBoard = [...board]
 
     newBoard[index] = newTurn
+    
+    setBoard(newBoard)
+    setTurn(newTurn)
+
   }
   return (
     <section>
