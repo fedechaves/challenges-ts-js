@@ -1,47 +1,21 @@
-import { useState } from 'react'
 import './App.css'
-import { useEffect } from 'react'
-
-const URL_FACT = 'https://catfact.ninja/fact'
+import { useCatImage } from './hooks/useCatImage'
+import { useRandomFact } from './hooks/useRandomFact'
 
 function App() {
-  const [fact, setFact] = useState('')
-  const [url, setUrl] = useState(null)
-  const [factError, setFactError ] = useState(null)
+  const { fact, handleRandomFact } = useRandomFact()
+  const { url } = useCatImage({ fact })
 
-  useEffect(() => {
-    fetch(URL_FACT)
-      .then(res => {
-        if(!res.ok){
-          throw new Error('Error fetching fact')
-        }
-        res.json()
-      })
-      .then(data => setFact(data.fact))
-      .catch(err => console.error(err))
-  }, [])
-
-  useEffect(()=>{
-    if(!fact) return
-
-    let firstWord = fact.split(' ')[0]
-     
-    if(firstWord){
-      fetch(`https://cataas.com/cat/says/${firstWord}?json=true`)
-      .then(data => data.json())
-      .then(url => setUrl(url._id))  
-      .catch(err => console.error(err))
-    }
-    console.log(fact, url)
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fact])
+  const handleClick = () => {
+    handleRandomFact()
+  }
   
   return (
     <section>
       <h1>Cat fact machine</h1>
-      <img src={`https://cataas.com/cat/${url}`} alt="This is a cat Image" />
+      <img src={url && `https://cataas.com/cat/${url}`} alt="This is a cat Image" />
       <p>{fact}</p>
+      <button onClick={handleClick}>change!</button>
     </section>
   )
 }
